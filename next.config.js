@@ -3,4 +3,18 @@ const withNextra = require('nextra')({
   themeConfig: './theme.config.tsx',
 })
 
-module.exports = withNextra()
+module.exports = withNextra({
+  async headers() {
+    return [
+      {
+        source: '/:path*.(ico|svg|jpg|jpeg|png|gif|webp)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'no-cache, no-store, max-age=0, must-revalidate',
+          },
+        ],
+      },
+    ];
+  },
+})
