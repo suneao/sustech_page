@@ -1,0 +1,64 @@
+---
+title: '实时巴士位置组件 (RealtimeMapv2.vue) 使用说明'
+---
+
+## 概述
+
+`RealtimeMapv2.vue` 是一个用于在地图上实时展示校园巴士和电瓶车位置的 Vue 组件。它被集成在 `sustech-online-ng` 项目中，为 `transport/bustimer` 页面提供核心的地图可视化功能。
+
+该组件使用 [MapLibre GL](https://maplibre.org/) 作为地图渲染引擎，并从一系列后端 API 获取地理空间数据和实时车辆位置。
+
+## 功能特性
+
+- **实时位置更新**: 每隔 5 秒自动从 API 获取最新的车辆位置并在地图上更新。
+- **多种数据图层**: 在地图上清晰地展示巴士线路、站点、建筑物及校门。
+- **预计到达时间 (ETA)**: 支持点击地图上的站点图标，查询并显示各线路车辆的预计到达时间。
+- **交互式信息弹窗**: 点击车辆或站点会显示详细信息，如车牌号、速度、目的地、线路等。
+- **自适应主题**: 能自动根据用户操作系统的亮/暗模式切换地图的视觉样式。
+
+## 使用方法
+
+该组件是为 VuePress 设计的，可以直接在项目中的 Markdown (`.md`) 或 MDX (`.mdx`) 文件中嵌入。
+
+为了确保组件只在浏览器环境中渲染（因为它需要访问 `window` 等客户端对象），必须将其包裹在 `<ClientOnly>` 标签内。
+
+### 基础用法
+
+在你的 `.md` 或 `.mdx` 文件中，添加以下代码：
+
+```vue
+<ClientOnly>
+  <RealtimeMapv2 />
+</ClientOnly>
+```
+
+这将会渲染一个具有完整功能的实时巴士地图。
+
+## 数据源 (API Endpoints)
+
+组件依赖以下 API 来获取数据：
+
+- **巴士实时位置**:
+  - URL: `https://bus.sustcra.com/api/v2/monitor_osm/`
+  - 作用: 获取校园巴士的实时 GPS 坐标、速度、方向等信息。
+
+- **电瓶车实时位置**:
+  - URL: `https://bus.sustcra.com/api/v2/monitor_sev_osm/`
+  - 作用: 获取校园电瓶车的实时位置数据。
+
+- **线路、站点及 ETA 数据**:
+  - Base URL: `https://bus.sustcra.com/api/v3/`
+  - 作用: 提供所有可用线路、站点列表、以及特定站点的车辆预计到达时间。
+
+- **地图静态资源**:
+  - Base URL: `https://bus.sustcra.com/`
+  - 作用: 提供地图样式文件 (JSON)、图标 (PNG) 和线路地理数据 (GeoJSON)。
+
+## 组件依赖
+
+- `maplibre-gl`: 用于渲染交互式地图。
+- `axios`: 用于向后端 API 发起 HTTP 请求。
+- `@turf/turf`: 用于进行地理空间计算（例如，计算车辆朝向）。
+- `pmtiles`: 用于处理和加载 Protomaps 切片格式的底图。
+- `ant-design-vue`: 在父组件 `TabView.vue` 中用于实现标签页切换。
+
