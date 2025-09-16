@@ -28,12 +28,24 @@ const config: DocsThemeConfig = {
     <>
       <style>
         {`
+          /* Halo background fix */
           html {
-            background-color: var(--nextra-background-color);
+            background-color: var(--nextra-background-color) !important;
           }
-          body {
+          body, #__next {
             background-color: transparent !important;
           }
+
+          /* Custom selection color */
+          ::selection {
+            background: #ffedd5;
+            color: #9a3412;
+          }
+          ::-moz-selection {
+            background: #ffedd5;
+            color: #9a3412;
+          }
+
           :root {
             --nextra-primary-hue: 35deg;
           }
@@ -98,7 +110,6 @@ const config: DocsThemeConfig = {
             background: #ffb446; /* Orange, matches theme */
             top: 10%;
             left: 20%;
-            animation: move-halo 35s infinite alternate ease-in-out;
           }
 
           .halo.two {
@@ -107,8 +118,6 @@ const config: DocsThemeConfig = {
             background: #46a9ff; /* Blue */
             bottom: 15%;
             right: 10%;
-            animation: move-halo 40s infinite alternate ease-in-out;
-            animation-delay: -7s;
           }
 
           .halo.three {
@@ -117,20 +126,6 @@ const config: DocsThemeConfig = {
             background: #b446ff; /* Purple */
             top: 30%;
             right: 25%;
-            animation: move-halo 30s infinite alternate ease-in-out;
-            animation-delay: -14s;
-          }
-
-          @keyframes move-halo {
-            0% {
-              transform: translate(0, 0) scale(1);
-            }
-            50% {
-              transform: translate(150px, 80px) scale(1.2);
-            }
-            100% {
-              transform: translate(-80px, -150px) scale(1);
-            }
           }
         `}
       </style>
@@ -163,15 +158,49 @@ document.addEventListener('click', function(e) {
           __html: `
 (function() {
   if (typeof window === 'undefined') return;
+
   const container = document.createElement('div');
   container.className = 'background-halos';
-  const halos = ['one', 'two', 'three'];
-  halos.forEach(function(name) {
+  
+  const haloData = [
+    { name: 'one', baseSpeed: 0.005, mouseSpeed: 30 },
+    { name: 'two', baseSpeed: 0.003, mouseSpeed: 50 },
+    { name: 'three', baseSpeed: 0.004, mouseSpeed: 20 }
+  ];
+  const haloElements = [];
+
+  haloData.forEach(function(data) {
     const halo = document.createElement('div');
-    halo.className = 'halo ' + name;
+    halo.className = 'halo ' + data.name;
     container.appendChild(halo);
+    haloElements.push(halo);
   });
   document.body.prepend(container);
+
+  let mouseX = 0;
+  let mouseY = 0;
+  document.addEventListener('mousemove', function(e) {
+    mouseX = e.clientX / window.innerWidth - 0.5;
+    mouseY = e.clientY / window.innerHeight - 0.5;
+  });
+
+  let startTime = Date.now();
+  function animate() {
+    const currentTime = Date.now();
+    const elapsedTime = (currentTime - startTime) / 1000;
+
+    haloElements.forEach(function(halo, index) {
+      const data = haloData[index];
+      const base_x = Math.sin(elapsedTime * data.baseSpeed) * 100;
+      const base_y = Math.cos(elapsedTime * data.baseSpeed) * 100;
+      const mouse_x = mouseX * data.mouseSpeed;
+      const mouse_y = mouseY * data.mouseSpeed;
+      halo.style.transform = 'translate(' + (base_x + mouse_x) + 'px, ' + (base_y + mouse_y) + 'px)';
+    });
+
+    requestAnimationFrame(animate);
+  }
+  animate();
 })();
 `
         }}
