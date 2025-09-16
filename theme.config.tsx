@@ -1,5 +1,7 @@
 import React from 'react'
-const config = {
+import { DocsThemeConfig } from 'nextra-theme-docs'
+
+const config: DocsThemeConfig = {
   logo: (
     <div style={{ display: 'flex', alignItems: 'center' }}>
       <img src="/icon.png" alt="Logo" width="24" height="24" style={{ marginRight: '0.5rem', borderRadius: '50%' }} />
