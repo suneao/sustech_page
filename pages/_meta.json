@@ -1,9 +1,19 @@
 {
   "index": "南科大资源页",
-  "sustech_manual": {
-    "title": "南科手册↗",
-    "type": "page",
-    "href": "https://sustech.online",
-    "newWindow": true
+  "links": {
+    "title": "友链",
+    "type": "menu",
+    "items": {
+      "sustech_manual": {
+        "title": "南科手册↗",
+        "href": "https://sustech.online",
+        "newWindow": true
+      },
+      "nces_nect": {
+        "title": "NCES评课网↗",
+        "href": "https://ncesnect.com",
+        "newWindow": true
+      }
+    }
   }
 }
