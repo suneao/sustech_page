@@ -1,13 +1,37 @@
 import React from 'react'
 import { DocsThemeConfig } from 'nextra-theme-docs'
+import { useRouter } from 'next/router'
+
+const translations = {
+  zh: {
+    logo: '南科大资源页',
+    footer: `© 2025 - ${new Date().getFullYear()} Gosesummer`,
+  },
+  en: {
+    logo: 'SUSTech Resource Hub',
+    footer: `© 2025 - ${new Date().getFullYear()} By Gosesummer`,
+  },
+  ja: {
+    logo: '南方科技大学リソースハブ',
+    footer: `© 2025 - ${new Date().getFullYear()} Gosesummer`,
+  },
+  ru: {
+    logo: 'Центр ресурсов ЮНТУ',
+    footer: `© 2025 - ${new Date().getFullYear()} от Gosesummer`,
+  },
+}
 
 const config: DocsThemeConfig = {
-  logo: (
-    <div style={{ display: 'flex', alignItems: 'center' }}>
-      <img src="/icon.png" alt="Logo" width="24" height="24" style={{ marginRight: '0.5rem', borderRadius: '50%' }} />
-      <span>南科大资源页</span>
-    </div>
-  ),
+  logo: () => {
+    const { locale } = useRouter()
+    const text = translations[locale] || translations.zh
+    return (
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <img src="/icon.png" alt="Logo" width="24" height="24" style={{ marginRight: '0.5rem', borderRadius: '50%' }} />
+        <span>{text.logo}</span>
+      </div>
+    )
+  },
   project: {
     link: 'https://github.com/suneao/sustech_page',
   },
@@ -22,7 +46,11 @@ const config: DocsThemeConfig = {
   },
   docsRepositoryBase: 'https://github.com/suneao/sustech_page',
   footer: {
-    text: <span>© 2025 - {new Date().getFullYear()} Gosesummer</span>,
+    text: () => {
+      const { locale } = useRouter()
+      const text = translations[locale] || translations.zh
+      return <span>{text.footer}</span>
+    }
   },
   useNextSeoProps() {
     return {
