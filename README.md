@@ -20,7 +20,7 @@
 
 网页部署在vercel上，由nextra修改而来。
 
-原项目：https://github.com/suneao/documentation-starter-kit/blob/main/pages/another.mdx?plain=1
+原项目：https://github.com/shuding/nextra-docs-template
 
 ## License
 
