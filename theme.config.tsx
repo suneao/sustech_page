@@ -28,14 +28,6 @@ const config: DocsThemeConfig = {
     <>
       <style>
         {`
-          /* Halo background fix */
-          html {
-            background-color: var(--nextra-background-color) !important;
-          }
-          body, #__next {
-            background-color: transparent !important;
-          }
-
           /* Custom selection color */
           ::selection {
             background: #ffedd5;
@@ -66,10 +58,19 @@ const config: DocsThemeConfig = {
             border-radius: 50%;
             pointer-events: none;
             z-index: 9999;
+            animation: ripple-animation 0.7s ease-out forwards;
+            
+            /* Default (Light Mode) styles */
+            backdrop-filter: blur(2px) brightness(0.95);
+            -webkit-backdrop-filter: blur(2px) brightness(0.95);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+          }
+
+          /* Dark mode ripple override */
+          .dark .ripple-effect {
             backdrop-filter: blur(2px) brightness(1.1);
             -webkit-backdrop-filter: blur(2px) brightness(1.1);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            animation: ripple-animation 0.7s ease-out forwards;
+            border: 1px solid rgba(255, 255, 255, 0.2);
           }
 
           @keyframes ripple-animation {
@@ -81,51 +82,6 @@ const config: DocsThemeConfig = {
               transform: translate(-50%, -50%) scale(2);
               opacity: 0;
             }
-          }
-          
-          /* Background Halos */
-          .background-halos {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: -1;
-          }
-
-          .halo {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(120px);
-            opacity: 0.15;
-          }
-          .dark .halo {
-            opacity: 0.25;
-          }
-
-          .halo.one {
-            width: 400px;
-            height: 400px;
-            background: #ffb446; /* Orange, matches theme */
-            top: 10%;
-            left: 20%;
-          }
-
-          .halo.two {
-            width: 500px;
-            height: 500px;
-            background: #46a9ff; /* Blue */
-            bottom: 15%;
-            right: 10%;
-          }
-
-          .halo.three {
-            width: 350px;
-            height: 350px;
-            background: #b446ff; /* Purple */
-            top: 30%;
-            right: 25%;
           }
         `}
       </style>
@@ -150,58 +106,6 @@ document.addEventListener('click', function(e) {
   if (e.target.closest('a, button')) return;
   createRipple(e.clientX, e.clientY);
 });
-`
-        }}
-      />
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `
-(function() {
-  if (typeof window === 'undefined') return;
-
-  const container = document.createElement('div');
-  container.className = 'background-halos';
-  
-  const haloData = [
-    { name: 'one', baseSpeed: 0.005, mouseSpeed: 30 },
-    { name: 'two', baseSpeed: 0.003, mouseSpeed: 50 },
-    { name: 'three', baseSpeed: 0.004, mouseSpeed: 20 }
-  ];
-  const haloElements = [];
-
-  haloData.forEach(function(data) {
-    const halo = document.createElement('div');
-    halo.className = 'halo ' + data.name;
-    container.appendChild(halo);
-    haloElements.push(halo);
-  });
-  document.body.prepend(container);
-
-  let mouseX = 0;
-  let mouseY = 0;
-  document.addEventListener('mousemove', function(e) {
-    mouseX = e.clientX / window.innerWidth - 0.5;
-    mouseY = e.clientY / window.innerHeight - 0.5;
-  });
-
-  let startTime = Date.now();
-  function animate() {
-    const currentTime = Date.now();
-    const elapsedTime = (currentTime - startTime) / 1000;
-
-    haloElements.forEach(function(halo, index) {
-      const data = haloData[index];
-      const base_x = Math.sin(elapsedTime * data.baseSpeed) * 100;
-      const base_y = Math.cos(elapsedTime * data.baseSpeed) * 100;
-      const mouse_x = mouseX * data.mouseSpeed;
-      const mouse_y = mouseY * data.mouseSpeed;
-      halo.style.transform = 'translate(' + (base_x + mouse_x) + 'px, ' + (base_y + mouse_y) + 'px)';
-    });
-
-    requestAnimationFrame(animate);
-  }
-  animate();
-})();
 `
         }}
       />
