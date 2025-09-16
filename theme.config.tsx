@@ -35,23 +35,70 @@ const config: DocsThemeConfig = {
         {`
           /* Custom selection color */
           ::selection {
-            background: hsla(var(--nextra-primary-hue, 35), 100%, 50%, 0.3);
+            background: hsla(var(--nextra-primary-hue, 30), 100%, 50%, 0.3);
             color: inherit;
           }
           ::-moz-selection {
-            background: hsla(var(--nextra-primary-hue, 35), 100%, 50%, 0.3);
+            background: hsla(var(--nextra-primary-hue, 30), 100%, 50%, 0.3);
             color: inherit;
           }
           .dark ::selection {
-            background: hsla(var(--nextra-primary-hue, 35), 100%, 50%, 0.4);
+            background: hsla(var(--nextra-primary-hue, 30), 100%, 50%, 0.4);
           }
           .dark ::-moz-selection {
-            background: hsla(var(--nextra-primary-hue, 35), 100%, 50%, 0.4);
+            background: hsla(var(--nextra-primary-hue, 30), 100%, 50%, 0.4);
           }
 
+          /* --- MODIFIED & NEW STYLES --- */
+
+          /* 1. Set Theme Color */
           :root {
-            --nextra-primary-hue: 35deg;
+            --nextra-primary-hue: 30deg; /* Richer Orange */
           }
+
+          /* 2. Dynamic Background Glow */
+          body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: -1;
+            background: radial-gradient(circle at 10% 20%, hsla(var(--nextra-primary-hue), 80%, 70%, 0.4), transparent 30%),
+                        radial-gradient(circle at 90% 80%, hsla(220, 80%, 80%, 0.4), transparent 35%);
+            filter: blur(100px);
+            animation: background-glow 25s linear infinite;
+          }
+
+          @keyframes background-glow {
+            0% {
+              transform: rotate(0deg) scale(1.1);
+            }
+            50% {
+              transform: rotate(180deg) scale(1.0);
+            }
+            100% {
+              transform: rotate(360deg) scale(1.1);
+            }
+          }
+
+          .dark body::before {
+             background: radial-gradient(circle at 10% 20%, hsla(var(--nextra-primary-hue), 80%, 60%, 0.5), transparent 30%),
+                        radial-gradient(circle at 90% 80%, hsla(220, 80%, 70%, 0.5), transparent 35%);
+          }
+
+          /* 3. Element Glows */
+          .nextra-nav > a:first-child:hover {
+            filter: drop-shadow(0 0 8px hsla(var(--nextra-primary-hue), 100%, 60%, 0.6));
+            transition: filter 0.3s ease;
+          }
+          .nextra-sidebar a.nx-text-primary-600 {
+            filter: drop-shadow(0 0 6px hsla(var(--nextra-primary-hue), 100%, 60%, 0.5));
+          }
+
+          /* --- ORIGINAL STYLES (ADAPTED) --- */
 
           /* Frosted glass navbar */
           .nextra-nav-container--sticky .nextra-nav {
@@ -59,7 +106,7 @@ const config: DocsThemeConfig = {
             backdrop-filter: saturate(180%) blur(5px);
             -webkit-backdrop-filter: saturate(180%) blur(5px);
           }
-                    .dark .nextra-nav-container--sticky .nextra-nav {
+          .dark .nextra-nav-container--sticky .nextra-nav {
             background: rgba(0, 0, 0, 0.7);
           }
 
@@ -81,14 +128,11 @@ const config: DocsThemeConfig = {
             pointer-events: none;
             z-index: 9999;
             animation: ripple-animation 0.7s ease-out forwards;
-            
-            /* Default (Light Mode) styles */
             backdrop-filter: blur(2px) brightness(0.95);
             -webkit-backdrop-filter: blur(2px) brightness(0.95);
             border: 1px solid rgba(0, 0, 0, 0.1);
           }
 
-          /* Dark mode ripple override */
           .dark .ripple-effect {
             backdrop-filter: blur(2px) brightness(1.1);
             -webkit-backdrop-filter: blur(2px) brightness(1.1);

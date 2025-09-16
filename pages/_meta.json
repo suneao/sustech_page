@@ -1,6 +1,7 @@
 {
   "index": "南科大资源页",
   "resources": "课程资源",
+  "bus-location": "巴士位置",
   "links": {
     "title": "友链",
     "type": "menu",
