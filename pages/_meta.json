@@ -1,9 +1,9 @@
 {
-  "index" : "hahhahaha",
-  "contact": {
-    "title": "Contactaaaaaaa ↗",
+  "index": "南科大资源页",
+  "sustech_manual": {
+    "title": "南科手册↗",
     "type": "page",
-    "href": "https://bilibili.com",
+    "href": "https://sustech.online",
     "newWindow": true
   }
 }
