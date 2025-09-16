@@ -2,7 +2,12 @@ import React from 'react'
 import { DocsThemeConfig } from 'nextra-theme-docs'
 
 const config: DocsThemeConfig = {
-  logo: <span>南科大资源页</span>,
+  logo: (
+    <div style={{ display: 'flex', alignItems: 'center' }}>
+      <img src="/icon.png" alt="Logo" width="24" height="24" style={{ marginRight: '0.5rem', borderRadius: '50%' }} />
+      <span>南科大资源页</span>
+    </div>
+  ),
   project: {
     link: 'https://github.com/suneao/sustech_page',
   },
@@ -30,12 +35,18 @@ const config: DocsThemeConfig = {
         {`
           /* Custom selection color */
           ::selection {
-            background: #ffedd5;
-            color: #9a3412;
+            background: hsla(var(--nextra-primary-hue, 35), 100%, 50%, 0.3);
+            color: inherit;
           }
           ::-moz-selection {
-            background: #ffedd5;
-            color: #9a3412;
+            background: hsla(var(--nextra-primary-hue, 35), 100%, 50%, 0.3);
+            color: inherit;
+          }
+          .dark ::selection {
+            background: hsla(var(--nextra-primary-hue, 35), 100%, 50%, 0.4);
+          }
+          .dark ::-moz-selection {
+            background: hsla(var(--nextra-primary-hue, 35), 100%, 50%, 0.4);
           }
 
           :root {
