@@ -1,7 +1,4 @@
-const withNextra = require('nextra').default({
-  theme: 'nextra-theme-docs',
-  themeConfig: './theme.config.tsx',
-})
+const withNextra = require('nextra').default()
 
 module.exports = withNextra({
   async headers() {
