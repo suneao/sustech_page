@@ -64,6 +64,68 @@ const config: DocsThemeConfig = {
               opacity: 0;
             }
           }
+          
+          /* Background Halos */
+          .background-halos {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+          }
+
+          .halo {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.15;
+          }
+          .dark .halo {
+            opacity: 0.25;
+          }
+
+          .halo.one {
+            width: 400px;
+            height: 400px;
+            background: #ffb446; /* Orange, matches theme */
+            top: 10%;
+            left: 20%;
+            animation: move-halo 35s infinite alternate ease-in-out;
+          }
+
+          .halo.two {
+            width: 500px;
+            height: 500px;
+            background: #46a9ff; /* Blue */
+            bottom: 15%;
+            right: 10%;
+            animation: move-halo 40s infinite alternate ease-in-out;
+            animation-delay: -7s;
+          }
+
+          .halo.three {
+            width: 350px;
+            height: 350px;
+            background: #b446ff; /* Purple */
+            top: 30%;
+            right: 25%;
+            animation: move-halo 30s infinite alternate ease-in-out;
+            animation-delay: -14s;
+          }
+
+          @keyframes move-halo {
+            0% {
+              transform: translate(0, 0) scale(1);
+            }
+            50% {
+              transform: translate(150px, 80px) scale(1.2);
+            }
+            100% {
+              transform: translate(-80px, -150px) scale(1);
+            }
+          }
         `}
       </style>
       <script
@@ -87,6 +149,24 @@ document.addEventListener('click', function(e) {
   if (e.target.closest('a, button')) return;
   createRipple(e.clientX, e.clientY);
 });
+`
+        }}
+      />
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+(function() {
+  if (typeof window === 'undefined') return;
+  const container = document.createElement('div');
+  container.className = 'background-halos';
+  const halos = ['one', 'two', 'three'];
+  halos.forEach(function(name) {
+    const halo = document.createElement('div');
+    halo.className = 'halo ' + name;
+    container.appendChild(halo);
+  });
+  document.body.prepend(container);
+})();
 `
         }}
       />
