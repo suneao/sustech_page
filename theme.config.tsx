@@ -28,6 +28,12 @@ const config: DocsThemeConfig = {
     <>
       <style>
         {`
+          html {
+            background-color: var(--nextra-background-color);
+          }
+          body {
+            background-color: transparent !important;
+          }
           :root {
             --nextra-primary-hue: 35deg;
           }
