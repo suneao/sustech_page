@@ -24,6 +24,70 @@ const config: DocsThemeConfig = {
       titleTemplate: '%s'
     }
   },
+  head: (
+    <>
+      <style>
+        {`
+          /* Frosted glass navbar */
+          .nextra-nav-container--sticky .nextra-nav {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: saturate(180%) blur(5px);
+            -webkit-backdrop-filter: saturate(180%) blur(5px);
+          }
+          .dark .nextra-nav-container--sticky .nextra-nav {
+            background: rgba(0, 0, 0, 0.7);
+          }
+
+          /* Glass ripple click effect */
+          .ripple-effect {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            backdrop-filter: blur(2px) brightness(1.1);
+            -webkit-backdrop-filter: blur(2px) brightness(1.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            animation: ripple-animation 0.7s ease-out forwards;
+          }
+
+          @keyframes ripple-animation {
+            from {
+              transform: translate(-50%, -50%) scale(0);
+              opacity: 1;
+            }
+            to {
+              transform: translate(-50%, -50%) scale(2);
+              opacity: 0;
+            }
+          }
+        `}
+      </style>
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+function createRipple(x, y) {
+  const ripple = document.createElement('div');
+  ripple.className = 'ripple-effect';
+  document.body.appendChild(ripple);
+  ripple.style.left = x + 'px';
+  ripple.style.top = y + 'px';
+  const size = 100;
+  ripple.style.width = size + 'px';
+  ripple.style.height = size + 'px';
+  ripple.addEventListener('animationend', function() {
+    ripple.remove();
+  });
+}
+
+document.addEventListener('click', function(e) {
+  if (e.target.closest('a, button')) return;
+  createRipple(e.clientX, e.clientY);
+});
+`
+        }}
+      />
+    </>
+  ),
 }
 
 export default config
