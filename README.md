@@ -1,23 +1,26 @@
-# Nextra Docs Template 
+# 南方科技大学资源共享站（非官方）
 
-This is a template for creating documentation with [Nextra](https://nextra.site).
 
-[**Live Demo →**](https://nextra-docs-template.vercel.app)
 
-[![](.github/screenshot.png)](https://nextra-docs-template.vercel.app)
+## 功能列表
 
-## Quick Start
+* 课本资源下载
+* 投稿学校资源
+* 各个课程作业
+* 学校重要网址资源
+* 巴士定位
+* 八卦周报
+* 表白墙
+* 经验分享
+* 友链
 
-Click the button to clone this repository and deploy it on Vercel:
+### 帮助我们
 
-[![](https://vercel.com/button)](https://vercel.com/new/clone?s=https%3A%2F%2Fgithub.com%2Fshuding%2Fnextra-docs-template&showOptionalTeamCreation=false)
+网页部署在vercel上，由nextra修改而来。
 
-## Local Development
-
-First, run `pnpm i` to install the dependencies.
-
-Then, run `pnpm dev` to start the development server and visit localhost:3000.
+原项目：https://github.com/suneao/documentation-starter-kit/blob/main/pages/another.mdx?plain=1
 
 ## License
 
 This project is licensed under the MIT License.
+
