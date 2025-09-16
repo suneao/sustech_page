@@ -1,0 +1,29 @@
+import { Cards, Card } from 'nextra/components'
+
+<div style={{
+  textAlign: 'center',
+  marginTop: '2rem',
+  marginBottom: '3rem'
+}}>
+  <h1 style={{
+    fontSize: '4rem',
+    fontWeight: 'bold',
+    background: 'linear-gradient(90deg, #ff8a00, #e52e71)',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
+    marginBottom: '0.5rem'
+  }}>
+    课程资源
+  </h1>
+  <p style={{ fontSize: '1.25rem', color: '#888' }}>
+    在这里下载电子课本等资源
+  </p>
+</div>
+
+<Cards>
+  <Card title="高等数学" href="/resources/advanced-math" />
+  <Card title="大学物理" href="/resources/university-physics" />
+  <Card title="大学化学" href="/resources/university-chemistry" />
+  <Card title="线性代数" href="/resources/linear-algebra" />
+  <Card title="生物学原理" href="/resources/principles-of-biology" />
+</Cards>
