@@ -28,6 +28,10 @@ const config: DocsThemeConfig = {
     <>
       <style>
         {`
+          :root {
+            --nextra-primary-hue: 35deg;
+          }
+
           /* Frosted glass navbar */
           .nextra-nav-container--sticky .nextra-nav {
             background: rgba(255, 255, 255, 0.8);
