@@ -1,17 +1,1 @@
-const withNextra = require('nextra')('./theme.config.tsx')
-
-module.exports = withNextra({
-  async headers() {
-    return [
-      {
-        source: '/:path*',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'no-cache, no-store, max-age=0, must-revalidate',
-          },
-        ],
-      },
-    ];
-  },
-})
+// This file is intentionally left blank. Configuration is in next.config.mjs.
