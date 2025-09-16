@@ -7,7 +7,7 @@ module.exports = withNextra({
   async headers() {
     return [
       {
-        source: '/:path*.(ico|svg|jpg|jpeg|png|gif|webp)',
+        source: '/:path*',
         headers: [
           {
             key: 'Cache-Control',
