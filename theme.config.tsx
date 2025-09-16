@@ -59,8 +59,19 @@ const config: DocsThemeConfig = {
             backdrop-filter: saturate(180%) blur(5px);
             -webkit-backdrop-filter: saturate(180%) blur(5px);
           }
-          .dark .nextra-nav-container--sticky .nextra-nav {
+                    .dark .nextra-nav-container--sticky .nextra-nav {
             background: rgba(0, 0, 0, 0.7);
+          }
+
+          /* Frosted glass dropdown menu */
+          [data-radix-popper-content-wrapper] {
+            background: rgba(255, 255, 255, 0.8) !important;
+            backdrop-filter: saturate(180%) blur(5px) !important;
+            -webkit-backdrop-filter: saturate(180%) blur(5px) !important;
+          }
+
+          .dark [data-radix-popper-content-wrapper] {
+            background: rgba(0, 0, 0, 0.7) !important;
           }
 
           /* Glass ripple click effect */
