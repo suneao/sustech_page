@@ -18,7 +18,7 @@ export const GradientTitle = () => (
         position: 'relative',
         marginBottom: '1rem',
         textShadow:
-          '0 0 24px #ff8c1a, 0 0 40px #ff6a00, 0 0 60px #49e2ff, 0 0 80px #ff6ac7, 0 0 100px #ff8c1a',
+          '0 0 8px #ff8c1a, 0 0 16px #ff6a00, 0 0 24px #49e2ff, 0 0 32px #ff6ac7, 0 0 40px #ff8c1a',
         animation: 'neonGlow 2s ease-in-out infinite alternate',
       }}
     >
@@ -28,11 +28,11 @@ export const GradientTitle = () => (
           @keyframes neonGlow {
             0% {
               text-shadow:
-                0 0 24px #ff8c1a, 0 0 40px #ff6a00, 0 0 60px #49e2ff, 0 0 80px #ff6ac7, 0 0 100px #ff8c1a;
+                0 0 8px #ff8c1a, 0 0 16px #ff6a00, 0 0 24px #49e2ff, 0 0 32px #ff6ac7, 0 0 40px #ff8c1a;
             }
             100% {
               text-shadow:
-                0 0 48px #ffb366, 0 0 60px #ff99cc, 0 0 100px #49e2ff, 0 0 120px #ff6ac7, 0 0 160px #ff8c1a;
+                0 0 16px #ffb366, 0 0 24px #ff99cc, 0 0 40px #49e2ff, 0 0 48px #ff6ac7, 0 0 64px #ff8c1a;
             }
           }
         `}
@@ -49,7 +49,7 @@ export const GradientTitle = () => (
           'linear-gradient(90deg, #ff8c1a 10%, #ff6a00 30%, #ff6ac7 60%, #49e2ff 100%)',
         WebkitBackgroundClip: 'text',
         WebkitTextFillColor: 'transparent',
-        filter: 'drop-shadow(0 0 8px #ffb366)',
+        filter: 'drop-shadow(0 0 3px #ffb366)',
       }}
     >
       非官方资源页面
