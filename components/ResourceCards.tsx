@@ -8,6 +8,8 @@ const cardsData = [
   { title: "大学化学", href: "/resources/university-chemistry" },
   { title: "线性代数", href: "/resources/linear-algebra" },
   { title: "生物学原理", href: "/resources/principles-of-biology" },
+  { title: "数学分析", href: "/resources/mathematical-analysis" },
+  { title: "思想与政治", href: "/resources/ethics-and-law" },
 ];
 
 export function ResourceCards() {
