@@ -1,7 +1,6 @@
 {
   "index": "南科大资源页",
   "resources": "课程资源",
-  "bus-location": "巴士位置",
   "links": {
     "title": "友链",
     "type": "menu",
@@ -15,6 +14,16 @@
         "title": "NCES评课网↗",
         "href": "https://ncesnect.com/",
         "newWindow": true
+      },
+      "sustech_wiki": {
+        "title": "南科大wiki↗",
+        "href": "https://sustc.wiki/",
+        "newWindow": true
+      },
+      "sustech_mirror": {
+        "title": "南科大镜像站↗",
+        "href": "https://mirrors.sustech.edu.cn/",
+        "newwindow": true
       }
     }
   }
