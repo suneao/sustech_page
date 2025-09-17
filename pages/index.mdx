@@ -1,3 +1,62 @@
-# 南科大资源站
- 
+import React from 'react';
+
+export const GradientTitle = () => (
+  <div style={{
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    marginTop: '4rem',
+    marginBottom: '2rem',
+  }}>
+    <h1
+      style={{
+        fontSize: '3rem',
+        fontWeight: 900,
+        background: 'linear-gradient(90deg, #ff8c1a 10%, #ff6a00 30%, #ff6ac7 60%, #49e2ff 100%)',
+        WebkitBackgroundClip: 'text',
+        WebkitTextFillColor: 'transparent',
+        position: 'relative',
+        marginBottom: '1rem',
+        textShadow:
+          '0 0 24px #ff8c1a, 0 0 40px #ff6a00, 0 0 60px #49e2ff, 0 0 80px #ff6ac7, 0 0 100px #ff8c1a',
+        animation: 'neonGlow 2s ease-in-out infinite alternate',
+      }}
+    >
+      南科大资源站
+      <style>
+        {`
+          @keyframes neonGlow {
+            0% {
+              text-shadow:
+                0 0 24px #ff8c1a, 0 0 40px #ff6a00, 0 0 60px #49e2ff, 0 0 80px #ff6ac7, 0 0 100px #ff8c1a;
+            }
+            100% {
+              text-shadow:
+                0 0 48px #ffb366, 0 0 60px #ff99cc, 0 0 100px #49e2ff, 0 0 120px #ff6ac7, 0 0 160px #ff8c1a;
+            }
+          }
+        `}
+      </style>
+    </h1>
+    <div
+      style={{
+        fontSize: '1.25rem',
+        color: '#ff8c1a',
+        fontWeight: 600,
+        letterSpacing: '0.1em',
+        marginBottom: '2rem',
+        background:
+          'linear-gradient(90deg, #ff8c1a 10%, #ff6a00 30%, #ff6ac7 60%, #49e2ff 100%)',
+        WebkitBackgroundClip: 'text',
+        WebkitTextFillColor: 'transparent',
+        filter: 'drop-shadow(0 0 8px #ffb366)',
+      }}
+    >
+      非官方资源页面
+    </div>
+  </div>
+);
+
+<GradientTitle />
+
 以下是南科大的资源，欢迎大家投稿
