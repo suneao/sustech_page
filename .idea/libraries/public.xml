@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="public">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/public/数学分析.zip!/" />
+      <root url="jar://$PROJECT_DIR$/public/大学物理.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
