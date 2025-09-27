@@ -1,10 +1,19 @@
 import React from 'react';
 import styles from './DownloadPage.module.css';
 
+interface DownloadItem {
+  readonly name: string;
+  readonly downloadLink: string;
+}
+
+interface DownloadCategory {
+  readonly title: string;
+  readonly items: readonly DownloadItem[];
+}
+
 interface DownloadPageProps {
-  subjectTitle: string;
-  itemName: string;
-  downloadLink: string;
+  readonly subjectTitle: string;
+  readonly categories?: readonly DownloadCategory[];
 }
 
 // Generic Book Icon
@@ -24,18 +33,34 @@ const DownloadIcon = () => (
     </svg>
 );
 
-export function DownloadPage({ subjectTitle, itemName, downloadLink }: DownloadPageProps) {
+export function DownloadPage({ subjectTitle, categories = [] }: DownloadPageProps) {
   return (
     <div className={styles.container}>
         <div className={styles.icon}>
             <BookIcon />
         </div>
         <h1 className={styles.title}>{subjectTitle}</h1>
-        <p className={styles.itemName}>{itemName}</p>
-        <a href={downloadLink} className={styles.downloadButton} download>
-            <DownloadIcon />
-            <span>下载</span>
-        </a>
+        
+        {categories.length > 0 ? (
+          categories.map((category) => (
+            <div key={category.title} className={styles.category}>
+              <h2 className={styles.categoryTitle}>{category.title}</h2>
+              <div className={styles.itemsContainer}>
+                {category.items.map((item) => (
+                  <div key={item.name} className={styles.item}>
+                    <p className={styles.itemName}>{item.name}</p>
+                    <a href={item.downloadLink} className={styles.downloadButton} download>
+                        <DownloadIcon />
+                        <span>下载</span>
+                    </a>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))
+        ) : (
+          <p className={styles.noResources}>暂无资源</p>
+        )}
     </div>
   );
 }
