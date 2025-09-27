@@ -1,0 +1,55 @@
+import { DownloadPage } from '../../components/DownloadPage'
+
+{/* 
+This is a template for creating subject download pages.
+Copy this template and replace the placeholder values with actual data.
+*/
+}
+
+<DownloadPage 
+  subjectTitle="[科目名称]"
+  categories={[
+    {
+      title: "教材",
+      items: [
+        { name: "[教材名称]", downloadLink: "[下载链接]" },
+        // Add more textbooks as needed
+      ]
+    },
+    {
+      title: "课件",
+      items: [
+        { name: "[课件名称]", downloadLink: "[下载链接]" },
+        // Add more lecture slides as needed
+      ]
+    },
+    {
+      title: "习题",
+      items: [
+        { name: "[习题集名称]", downloadLink: "[下载链接]" },
+        // Add more problem sets as needed
+      ]
+    },
+    {
+      title: "试卷",
+      items: [
+        { name: "[试卷名称]", downloadLink: "[下载链接]" },
+        // Add more exam papers as needed
+      ]
+    },
+    {
+      title: "其他资源",
+      items: [
+        { name: "[资源名称]", downloadLink: "[下载链接]" },
+        // Add more resources as needed
+      ]
+    }
+  ]}
+/>
+
+{/* 
+Usage Instructions:
+1. Copy this template to pages/resources/[subject-name].mdx
+2. Replace all placeholder values with actual data
+3. Add or remove categories as needed
+*/}
