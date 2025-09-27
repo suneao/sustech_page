@@ -1,5 +1,4 @@
-import { useRouter } from 'next/router'
-import { DocsThemeConfig, useConfig } from 'nextra-theme-docs'
+import { DocsThemeConfig} from 'nextra-theme-docs'
 
 // Add this CSS to your global CSS file (e.g., styles/globals.css)
 // :root {
@@ -32,13 +31,8 @@ const config: DocsThemeConfig = {
   },
   docsRepositoryBase: 'https://github.com/suneao/sustech_page',
   footer: {
-    component: () => (
-      <div style={{ textAlign: 'center', padding: '1rem 0' }}>
-        <span> 2025 - {new Date().getFullYear()} Gosesummer</span>
-      </div>
-    ),
   },
-  head: () => (
+    head: () => (
     <style>{`
       :root {
         --nextra-primary-hue: ${PRIMARY_HUE};
