@@ -1,11 +1,22 @@
-import { useEffect } from 'react';
-import { useRouter } from 'next/router';
-import Script from 'next/script';
 import type { AppProps } from 'next/app';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
+import Script from 'next/script';
+
+// This is the recommended way to add Vercel Analytics in Next.js 14
+function VercelAnalytics() {
+  return (
+    <Script
+      src="/_vercel/insights/script.js"
+      data-api="/_vercel/insights/event"
+      strategy="afterInteractive"
+    />
+  );
+}
 
 declare global {
   interface Window {
-    va?: any;
+    va?: (event: string, options?: any) => void;
   }
 }
 
@@ -15,11 +26,16 @@ export default function App({ Component, pageProps }: AppProps) {
   useEffect(() => {
     const handleRouteChange = (url: string) => {
       if (window.va) {
-        window.va('send', 'pageview');
+        window.va('pageview', { url });
       }
     };
 
+    // Handle initial page load
+    handleRouteChange(window.location.pathname + window.location.search);
+    
+    // Handle subsequent route changes
     router.events.on('routeChangeComplete', handleRouteChange);
+    
     return () => {
       router.events.off('routeChangeComplete', handleRouteChange);
     };
@@ -28,11 +44,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Component {...pageProps} />
-      <Script
-        src="/_vercel/insights/script.js"
-        data-api="/_vercel/insights/event"
-        strategy="afterInteractive"
-      />
+      <VercelAnalytics />
     </>
   );
 }

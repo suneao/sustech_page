@@ -1,20 +1,24 @@
-const withNextra = require('nextra')({
+// @ts-check
+import withNextra from 'nextra';
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  swcMinify: true,
+  // Disable static export for now to simplify the setup
+  // output: 'export',
+  images: {
+    unoptimized: true
+  },
+  // Disable the static export behavior for development
+  experimental: {},
+};
+
+const withNextraConfig = withNextra({
   theme: 'nextra-theme-docs',
   themeConfig: './theme.config.tsx',
-})
+  defaultShowCopyCode: true,
+  staticImage: true,
+});
 
-module.exports = withNextra({
-  async headers() {
-    return [
-      {
-        source: '/:path*',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'no-cache, no-store, max-age=0, must-revalidate',
-          },
-        ],
-      },
-    ];
-  },
-})
+export default withNextraConfig(nextConfig);
