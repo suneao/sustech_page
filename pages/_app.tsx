@@ -2,6 +2,12 @@ import type { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import Script from 'next/script';
+import dynamic from 'next/dynamic';
+import GlobalStyle from '../components/GlobalStyle';
+
+const ClickEffect = dynamic(() => import('../components/ClickEffect'), {
+  ssr: false,
+});
 
 // This is the recommended way to add Vercel Analytics in Next.js 14
 function VercelAnalytics() {
@@ -43,8 +49,10 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <>
+      <GlobalStyle />
       <Component {...pageProps} />
       <VercelAnalytics />
+      <ClickEffect />
     </>
   );
 }
