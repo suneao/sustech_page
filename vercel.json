@@ -17,5 +17,22 @@
         }
       ]
     }
-  ]
+  ],
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "out"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/update-resources",
+      "dest": "/api/update-resources.js"
+    }
+  ],
+  "buildCommand": "npm run build",
+  "outputDirectory": "out"
 }
