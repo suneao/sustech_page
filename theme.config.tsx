@@ -92,7 +92,10 @@ const config: DocsThemeConfig = {
         /* 3. Element Glows */
         .nextra-nav > a:first-child:hover {
           filter: drop-shadow(0 0 8px hsla(var(--nextra-primary-hue), ${Number(config.primarySaturation)}%, 60%, 0.6));
-          transition: filter 0.3s ease;
+          transition: all 0.3s ease;
+          background: rgba(255, 255, 255, 0.2);
+          backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
         }
         .nextra-sidebar a.nx-text-primary-600 {
           filter: drop-shadow(0 0 6px hsla(var(--nextra-primary-hue), ${Number(config.primarySaturation)}%, 60%, 0.5));
@@ -100,25 +103,88 @@ const config: DocsThemeConfig = {
 
         /* --- ORIGINAL STYLES (ADAPTED) --- */
 
-        /* Frosted glass navbar */
+        /* Frosted glass navbar and dropdowns */
         .nextra-nav-container--sticky .nextra-nav {
           background: rgba(255, 255, 255, 0.8);
-          backdrop-filter: saturate(180%) blur(5px);
-          -webkit-backdrop-filter: saturate(180%) blur(5px);
+          backdrop-filter: saturate(180%) blur(12px);
+          -webkit-backdrop-filter: saturate(180%) blur(12px);
         }
         .dark .nextra-nav-container--sticky .nextra-nav {
           background: rgba(0, 0, 0, 0.7);
         }
+        
+        /* Top navigation dropdown menu - General dropdowns */
+        .nextra-nav-container nav[role="navigation"] > div > div[data-active="true"] > div,
+        .nextra-nav-container [role="menu"],
+        .nextra-nav-container [role="menu"] > div,
+        .nextra-nav-container [role="menu"] > div > div {
+          background: rgba(255, 255, 255, 0.5) !important; /* More transparent background */
+          backdrop-filter: saturate(180%) blur(20px) !important; /* Stronger blur */
+          -webkit-backdrop-filter: saturate(180%) blur(20px) !important;
+          border: 1px solid rgba(255, 255, 255, 0.2) !important; /* Lighter border */
+          border-radius: 8px !important;
+          box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1) !important;
+          overflow: hidden !important;
+        }
+        
+        .dark .nextra-nav-container nav[role="navigation"] > div > div[data-active="true"] > div,
+        .dark .nextra-nav-container [role="menu"],
+        .dark .nextra-nav-container [role="menu"] > div,
+        .dark .nextra-nav-container [role="menu"] > div > div {
+          background: rgba(30, 30, 30, 0.5) !important; /* More transparent dark background */
+          backdrop-filter: saturate(180%) blur(20px) !important; /* Stronger blur */
+          -webkit-backdrop-filter: saturate(180%) blur(20px) !important;
+          border: 1px solid rgba(255, 255, 255, 0.1) !important;
+          box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3) !important;
+        }
+        
+        /* Ensure dropdown items have proper hover states */
+        .nextra-nav-container [role="menu"] a,
+        .nextra-nav-container [role="menu"] button {
+          transition: background-color 0.2s ease;
+        }
+        
+        .nextra-nav-container [role="menu"] a:hover,
+        .nextra-nav-container [role="menu"] button:hover {
+          background: rgba(0, 0, 0, 0.05) !important;
+        }
+        
+        .dark .nextra-nav-container [role="menu"] a:hover,
+        .dark .nextra-nav-container [role="menu"] button:hover {
+          background: rgba(255, 255, 255, 0.1) !important;
+        }
 
-        /* Frosted glass dropdown menu */
+        /* Enhanced frosted glass dropdown menu with better blur */
         [data-radix-popper-content-wrapper] {
-          background: rgba(255, 255, 255, 0.8) !important;
-          backdrop-filter: saturate(180%) blur(5px) !important;
-          -webkit-backdrop-filter: saturate(180%) blur(5px) !important;
+          background: rgba(255, 255, 255, 0.7) !important;
+          backdrop-filter: saturate(180%) blur(12px) !important;
+          -webkit-backdrop-filter: saturate(180%) blur(12px) !important;
+          border: 1px solid rgba(255, 255, 255, 0.1) !important;
+          box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15) !important;
         }
 
         .dark [data-radix-popper-content-wrapper] {
-          background: rgba(0, 0, 0, 0.7) !important;
+          background: rgba(0, 0, 0, 0.6) !important;
+          border: 1px solid rgba(255, 255, 255, 0.05) !important;
+        }
+        
+        /* Sidebar item hover effect with frosted glass */
+        .nextra-sidebar a {
+          transition: all 0.2s ease;
+          border-radius: 6px;
+          margin: 2px 0;
+        }
+        
+        .nextra-sidebar a:hover {
+          background: rgba(255, 255, 255, 0.5) !important;
+          backdrop-filter: saturate(180%) blur(8px);
+          -webkit-backdrop-filter: saturate(180%) blur(8px);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        
+        .dark .nextra-sidebar a:hover {
+          background: rgba(30, 30, 30, 0.6) !important;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
         /* Glass ripple click effect */
