@@ -1,4 +1,4 @@
-import { DocsThemeConfig} from 'nextra-theme-docs'
+import type { DocsThemeConfig } from 'nextra-theme-docs'
 
 // Add this CSS to your global CSS file (e.g., styles/globals.css)
 // :root {

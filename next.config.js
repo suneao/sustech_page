@@ -1,5 +1,5 @@
 // @ts-check
-import withNextra from 'nextra';
+import nextra from 'nextra';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -14,11 +14,10 @@ const nextConfig = {
   experimental: {},
 };
 
-const withNextraConfig = withNextra({
+const withNextra = nextra({
   theme: 'nextra-theme-docs',
-  themeConfig: './theme.config.tsx',
   defaultShowCopyCode: true,
-  staticImage: true,
+  themeConfig: './theme.config.tsx'
 });
 
-export default withNextraConfig(nextConfig);
+export default withNextra(nextConfig);
