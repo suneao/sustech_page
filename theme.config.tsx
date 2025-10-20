@@ -1,5 +1,4 @@
-import { useRouter } from 'next/router'
-import { DocsThemeConfig, useConfig } from 'nextra-theme-docs'
+import type { DocsThemeConfig } from 'nextra-theme-docs'
 
 // Add this CSS to your global CSS file (e.g., styles/globals.css)
 // :root {
@@ -32,7 +31,6 @@ const config: DocsThemeConfig = {
   },
   docsRepositoryBase: 'https://github.com/suneao/sustech_page',
   footer: {
-    content: <span>2025 - {new Date().getFullYear()} Gosesummer</span>,
   },
     head: () => (
     <style>{`
