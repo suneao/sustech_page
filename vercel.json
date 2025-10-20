@@ -27,12 +27,6 @@
       }
     }
   ],
-  "routes": [
-    {
-      "src": "/api/update-resources",
-      "dest": "/api/update-resources.js"
-    }
-  ],
   "buildCommand": "npm run build",
   "outputDirectory": "out"
 }
